@@ -26,7 +26,7 @@ public partial class AssignNewDestinationSystem : SystemBase
                 if (distance < 0.1f)
                 {
                     Random random = randomArray[nativeThreadIndex];
-                    destination.Value += random.NextFloat3(-500, 500);
+                    destination.Value += random.NextFloat3(-50, 50);
 
                     randomArray[nativeThreadIndex] = random;
                 }

@@ -12,6 +12,7 @@ public class SetupSpawner : MonoBehaviour
     [SerializeField] private int _spread;
 
     [SerializeField] private Vector2 _speedRange = new Vector2(1, 5);
+    [SerializeField] private Vector2 _lifeTimeRange = new Vector2(5, 15);
 
     [SerializeField] private bool _withDOTS = true;
 
@@ -52,13 +53,14 @@ public class SetupSpawner : MonoBehaviour
                 Entity instance = entityManager.Instantiate(personEntity); //Create an instance
                 float3 position = new float3(x * _spread, 0, z * _spread); //Create a new position
                 float speed = UnityEngine.Random.Range(_speedRange.x, _speedRange.y);
+                float lifeTime = UnityEngine.Random.Range(_lifeTimeRange.x, _lifeTimeRange.y);
 
                 //Set the instance's position
                 entityManager.SetComponentData(instance, new Translation { Value = position });
                 entityManager.SetComponentData(instance, new Rotation { Value = quaternion.identity });
                 entityManager.SetComponentData(instance, new Destination { Value = destination });
                 entityManager.SetComponentData(instance, new Speed { Value = speed });
-
+                entityManager.SetComponentData(instance, new Lifetime { Value = lifeTime });
             }
         }
     }
